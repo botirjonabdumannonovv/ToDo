@@ -1,6 +1,11 @@
-﻿namespace ToDo.Domain.Enums;
+﻿using System.Dynamic;
 
-public interface EntityEvent
+namespace ToDo.Domain.Enums;
+
+public enum EntityEvent
 {
-    
+    OnGet,
+    OnCreate,
+    OnUpdate,
+    OnDelete
 }

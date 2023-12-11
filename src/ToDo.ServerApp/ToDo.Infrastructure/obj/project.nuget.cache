@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "jwU74vrE/zpVgvnEkF+/NbzPBrm1LJsZDrrLiQN64U4sU/9XCDlDs31Q8wEcOsPQXbBazGnoD0+r/GikpOOgsg==",
+  "dgSpecHash": "a2dUczyVzpiZb1WmNUzQu+lXZU77LrMbdikuEqVaaP+wtRJV0gOAYKezUeZh3qPsMQuSby4upfdC7EvG19d2Ng==",
   "success": true,
   "projectFilePath": "D:\\Amaliy loyiha\\ToDo\\src\\ToDo.ServerApp\\ToDo.Infrastructure\\ToDo.Infrastructure.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\fluentvalidation\\11.8.1\\fluentvalidation.11.8.1.nupkg.sha512"
+  ],
   "logs": []
 }

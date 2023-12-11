@@ -6,4 +6,13 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\ToDo.Application\ToDo.Application.csproj" />
+        <ProjectReference Include="..\ToDo.Persistence\ToDo.Persistence.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="11.8.1" />
+    </ItemGroup>
+
 </Project>

@@ -1,15 +1,19 @@
 Todo App
+
 Overview
+
 This Todo App is a simple application for managing your notes, meetings, and tasks. It is built using C# for the backend and Vue.js for the frontend.
 
 
 Features
+
 Add and manage your tasks, notes, and meetings.
 Receive alerts for upcoming tasks and meetings.
 User-friendly interface for easy navigation.
 
 
 Technologies Used
+
 C# for the backend
 Vue.js for the frontend
 

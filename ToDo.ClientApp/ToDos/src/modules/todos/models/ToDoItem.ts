@@ -1,5 +1,5 @@
 import type {IMappable} from "@/infrastructure/mappers/IMappable";
-import type {Guid}
+import type {Guid} from "guid-typescript";
 export class ToDoItem implements IMappable<ToDoItem>{
     constructor() {
         this.dueTime = new Date();

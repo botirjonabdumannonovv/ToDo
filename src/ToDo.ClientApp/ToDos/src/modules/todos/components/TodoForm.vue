@@ -2,7 +2,7 @@
 
   <div class="h-20 gap-x-4 w-full border border-gray-500 rounded-xl p-4 flex items-center">
     <form @submit.prevent="submitAsync" class="w-full">
-      <input type="text" placeholder="Add task" v-model="todo.title" ref="todo"
+      <input type="text" placeholder="Add task" v-model="todo.title"
              class="input text-lg  focus:outline-none focus:border-sky-500 contrast-less:border-slate-300 text-slate-300">
     </form>
   </div>
@@ -51,7 +51,7 @@ const resetForm = () => {
 }
 
 const createToDoAsync = async () => {
-    const response = await todoApiClient.todos.createAsync(todo.value instanceof ToDoItem ? todo.value : new ToDoItem());
+    const response = await todoApiClient.todos.createAsync(todo.value);
 
     if(response.isSuccess){
         emits("addNewTodo", response.response!);
@@ -61,7 +61,7 @@ const createToDoAsync = async () => {
 }
 
 const updateToDoAsync = async () => {
-    const response = await todoApiClient.todos.updateAsync(todo.value instanceof ToDoItem ? todo.value : new ToDoItem());
+    const response = await todoApiClient.todos.updateAsync(todo.value);
 
     if(response.isSuccess){
         updateTodoValues(response.response!);

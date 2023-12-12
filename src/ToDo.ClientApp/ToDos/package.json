@@ -15,7 +15,8 @@
     "guid": "^0.0.12",
     "guid-typescript": "^1.0.9",
     "vue": "^3.3.10",
-    "vue-uuid": "^3.0.0"
+    "vue-uuid": "^3.0.0",
+    "vuetify": "^3.4.6"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",

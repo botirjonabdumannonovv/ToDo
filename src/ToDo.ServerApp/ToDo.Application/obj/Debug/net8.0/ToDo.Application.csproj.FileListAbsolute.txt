@@ -1,0 +1,16 @@
+D:\Amaliy loyiha\ToDo\src\ToDo.ServerApp\ToDo.Application\bin\Debug\net8.0\ToDo.Application.deps.json
+D:\Amaliy loyiha\ToDo\src\ToDo.ServerApp\ToDo.Application\bin\Debug\net8.0\ToDo.Application.dll
+D:\Amaliy loyiha\ToDo\src\ToDo.ServerApp\ToDo.Application\bin\Debug\net8.0\ToDo.Application.pdb
+D:\Amaliy loyiha\ToDo\src\ToDo.ServerApp\ToDo.Application\bin\Debug\net8.0\ToDo.Domain.dll
+D:\Amaliy loyiha\ToDo\src\ToDo.ServerApp\ToDo.Application\bin\Debug\net8.0\ToDo.Domain.pdb
+D:\Amaliy loyiha\ToDo\src\ToDo.ServerApp\ToDo.Application\obj\Debug\net8.0\ToDo.Application.csproj.AssemblyReference.cache
+D:\Amaliy loyiha\ToDo\src\ToDo.ServerApp\ToDo.Application\obj\Debug\net8.0\ToDo.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Amaliy loyiha\ToDo\src\ToDo.ServerApp\ToDo.Application\obj\Debug\net8.0\ToDo.Application.AssemblyInfoInputs.cache
+D:\Amaliy loyiha\ToDo\src\ToDo.ServerApp\ToDo.Application\obj\Debug\net8.0\ToDo.Application.AssemblyInfo.cs
+D:\Amaliy loyiha\ToDo\src\ToDo.ServerApp\ToDo.Application\obj\Debug\net8.0\ToDo.Application.csproj.CoreCompileInputs.cache
+D:\Amaliy loyiha\ToDo\src\ToDo.ServerApp\ToDo.Application\obj\Debug\net8.0\ToDo.Application.sourcelink.json
+D:\Amaliy loyiha\ToDo\src\ToDo.ServerApp\ToDo.Application\obj\Debug\net8.0\ToDo.Application.csproj.CopyComplete
+D:\Amaliy loyiha\ToDo\src\ToDo.ServerApp\ToDo.Application\obj\Debug\net8.0\ToDo.Application.dll
+D:\Amaliy loyiha\ToDo\src\ToDo.ServerApp\ToDo.Application\obj\Debug\net8.0\refint\ToDo.Application.dll
+D:\Amaliy loyiha\ToDo\src\ToDo.ServerApp\ToDo.Application\obj\Debug\net8.0\ToDo.Application.pdb
+D:\Amaliy loyiha\ToDo\src\ToDo.ServerApp\ToDo.Application\obj\Debug\net8.0\ref\ToDo.Application.dll

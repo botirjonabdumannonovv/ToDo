@@ -6,7 +6,7 @@ export class ToDoApiClient{
     public readonly baseUrl: string;
 
     constructor() {
-        this.baseUrl = "http://localhost:5173";
+        this.baseUrl = "https://localhost:7231/";
 
         this.client = new ApiClientBase({
             baseURL: this.baseUrl

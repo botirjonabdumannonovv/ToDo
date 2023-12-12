@@ -37,9 +37,10 @@ import {ToDoItem} from "@/modules/todos/models/ToDoItem";
 import {markRaw, ref, watch} from "vue";
 import {Utils} from "@/infrastructure/extentions/ObjectExtensions";
 import {useDate} from "vuetify";
+import {ToDoApiClient} from "@/infrastructure/apiClients/toDoApiClient/brokers/ToDoApiClient";
 
 const adapter = useDate();
-const todoApiClient = new TodoApiClient();
+const todoApiClient = new ToDoApiClient();
 
 const emit = defineEmits<{
   addNewTodo: [todo: ToDoItem]

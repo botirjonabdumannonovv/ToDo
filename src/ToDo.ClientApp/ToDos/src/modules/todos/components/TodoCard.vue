@@ -1,50 +1,55 @@
 <template>
 
-    <div class="h-20 flex gap-x-4 w-full border border-gray-500 rounded-xl p-4 px-10">
+  <div class="h-20 flex gap-x-4 w-full border border-gray-500 rounded-xl p-4 px-10 group">
 
-        <!-- Primary Actions -->
-        <div class="flex items-center">
+    <!-- Primary Actions -->
+    <div class="flex items-center">
+      <button class="h-8 w-8 group border theme-border flex justify-center items-center rounded-full"
+              @click="toggleIsDone" :disabled="isOverdue">
+        <i v-if="todo.isDone || (!todo.isDone && !isOverdue)" class="simple-hover fa-solid fa-check theme-icon"
+           :class="{ 'text-successColor opacity-100': todo.isDone }"/>
+        <i v-if="!todo.isDone && isOverdue"
+           class="fa-solid fa-xmark text-textSecondaryColor"/>
+      </button>
+    </div>
 
-            <button class="h-8 w-8 group border theme-border flex justify-center items-center rounded-full"
-                  @click="toggleIsDone">
-              <i class="simple-hover fa-solid fa-check theme-icon"
-                 :class="{'text-successColor opacity-100': todo.isDone, 'text-failedColor': !todo.isDone && (todo.dueTime < Date.now())}"></i>>
-            </button>
+    <!-- Details -->
+    <div class="flex-grow">
+      <h5 class="font-bold line-clamp-1">{{ todo.title }}</h5>
+      <div class="flex gap-2 text-sm">
+        <p class="opacity-80" :class="{ 'text-red-500': isOverdue }">
+          <i class="fa-regular fa-calendar theme-icon mr-1" :class="{ 'text-red-500': isOverdue }"/>
+          {{ DateFormatter.formatHumanize(todo.dueTime) }}
+        </p>
+        <span class="opacity-40">•</span>
+        <p class="opacity-40">
+          <i class="fa-regular fa-bell theme-icon mr-1"></i>
+          {{ DateFormatter.formatHumanize(todo.reminderTime) }}
+        </p>
+      </div>
+    </div>
 
-        </div>
+    <!-- Secondary Actions -->
+    <div class="flex opacity-0 items-center gap-x-4 group-hover:opacity-100 transition-opacity duration-200">
 
-        <!-- Details -->
-        <div class="flex-grow">
+      <!-- Favorite button -->
+      <button class="text-2xl btn-hover" @click="toggleIsFavorite">
+        <i class="fa-star theme-icon" :class="todo.isFavorite ? 'fa-solid' : 'fa-regular'"></i>
+      </button>
 
-            <!-- TODO : truncate -->
-            <h5 class="font-bold line-clamp-1">{{todo.title}}</h5>
-            <div class="flex gap-2 text-sm">
+      <!-- Edit button -->
+      <button class="text-2xl btn-hover" @click="onEdit">
+        <i class="fa-solid fa-pen-to-square theme-icon"></i>
+      </button>
 
-                <p class="opacity-80">{{DateFormatter.formatHumanize(todo.dueTime)}}}</p>
-                <span class="opacity-80">•</span>
-                <p class="opacity-40">{{DateFormatter.formatHumanize(todo.dueTime)}}</p>
-
-            </div>
-
-        </div>
-
-        <!-- Secondary Actions -->
-        <div class="flex items-center gap-x-4">
-            <!-- TODO : change star stroke -->
-            <button class="text-2xl font-light flex justify-center items-center rounded-full"
-                    @click="toggleIsFavorite">
-                  <i class="fa-star theme-icon"
-                      :class="{'fa-solid': todo.isFavorite, 'fa-regular': !todo.isFavorite}"></i>
-            </button>
-
-            <button class="text-2xl font-light flex justify-center items-center rounded-full"
-                    @click="onEdit">
-                <i class="fa-solid fa-trash theme-icon"/>
-
-            </button>
-        </div>
+      <!-- Delete button -->
+      <button class="text-2xl btn-hover" @click="onDeleteAsync">
+        <i class="fa-solid fa-trash theme-icon"/>
+      </button>
 
     </div>
+
+  </div>
 
 </template>
 
@@ -54,34 +59,52 @@ import {ToDoApiClient} from "@/infrastructure/apiClients/toDoApiClient/brokers/T
 import type {ToDoItem} from "@/modules/todos/models/ToDoItem";
 import type { Guid } from "guid-typescript";
 import {DateFormatter} from "../../../infrastructure/services/DateFormatter";
+import {computed} from "vue";
+import {Utils} from "@/infrastructure/extentions/ObjectExtensions";
 
 const todoApiClient = new ToDoApiClient();
 
 const props = defineProps({
-    todo: {
-        type: Object as () => ToDoItem,
-        required: true
-    }
+  todo: {
+    type: Object as () => ToDoItem,
+    required: true
+  }
 });
 
-const emit = defineEmits<{editTodo: [id: Guid], deleteTodo: [id: Guid]}>();
+const emit = defineEmits<{
+  editTodo: [id: Guid],
+  deleteTodo: [id: Guid]
+}>();
 
-const toggleIsDone = () => {
-    todo.value.isDone = !todo.value.isDone;
+const toggleIsDone = async () => {
+  const clonedTodo = Utils.deepClone(props.todo);
+  clonedTodo.isDone = !clonedTodo.isDone;
+
+  const response = await todoApiClient.todos.updateAsync(clonedTodo);
+  if (response.isSuccess)
+    Object.assign(props.todo, clonedTodo);
 }
 
-const toggleIsFavorite = () =>{
-    todo.value.isFavorite = !todo.value.isFavorite;
+const toggleIsFavorite = async () => {
+  const clonedTodo = Utils.deepClone(props.todo);
+  clonedTodo.isFavorite = !clonedTodo?.isFavorite;
+
+  const response = await todoApiClient.todos.updateAsync(clonedTodo);
+  if (response.isSuccess)
+    Object.assign(props.todo, clonedTodo);
 }
 
-const onEdit = () =>{
-    emit('editTodo', props.todo?.id);
+const onEdit = () => {
+  emit('editTodo', props.todo?.id);
 }
 
 const onDeleteAsync = async () => {
-    const response = await todoApiClient.todos.deleteByIdAsync(props.todo.id);
-    if(response.isSuccess)
-        emit("deleteTodo", props.todo.id);
+  const response = await todoApiClient.todos.deleteByIdAsync(props.todo.id);
+  if (response.isSuccess)
+    emit("deleteTodo", props.todo.id);
 }
+
+// create computed properties
+const isOverdue = computed(() => new Date(props.todo.dueTime) < new Date());
 
 </script>

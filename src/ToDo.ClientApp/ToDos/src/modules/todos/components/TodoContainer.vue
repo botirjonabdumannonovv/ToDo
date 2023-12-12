@@ -18,12 +18,11 @@ import {ToDoApiClient} from "@/infrastructure/apiClients/toDoApiClient/brokers/T
 import {onBeforeMount, ref} from "vue";
 import {ToDoItem} from "@/modules/todos/models/ToDoItem";
 import {defineComponent} from "vue";
-import NewTodoForm from "@/modules/todos/components/NewTodoForm.vue";
+import NewTodoForm from "@/modules/todos/components/TodoForm.vue";
 import TodoList from "@/modules/todos/components/TodoList.vue";
+import type {Guid} from "guid-typescript";
 
-// export default defineComponent({
-//   components: {NewTodoForm, TodoList}
-// });
+
 
 const todoApiClient = new ToDoApiClient();
 const todos = ref<ToDoItem[]>([]);
@@ -33,7 +32,7 @@ onBeforeMount(async () => {
     await loadTodoAsync();
 });
 
-const loadTodoAsync = async () =>{
+const loadTodoAsync = async () => {
     const todosResponse = await todoApiClient.todos.getAsync();
     if(todosResponse.isSuccess && todosResponse.response){
         todos.value = todosResponse.response;
@@ -44,7 +43,7 @@ const onAddTodo = (todo: ToDoItem) => {
     todos.value.push(todo);
 }
 
-const onEditTodo = (id: Guid) =>{
+const onEditTodo = (id: Guid) => {
     const todo = todos.value.find(x => x.id === id);
     if(todo){
         editTodo.value = todo;

@@ -1,5 +1,5 @@
 import type ApiClientBase from "@/infrastructure/apiClients/apiClientBase/ApiClientBase";
-import type {ToDoItem} from "@/modules/todos/models/ToDoItem";
+import {ToDoItem} from "@/modules/todos/models/ToDoItem";
 import type { Guid } from "guid-typescript";
 
 export class ToDoEndpointsDetails{

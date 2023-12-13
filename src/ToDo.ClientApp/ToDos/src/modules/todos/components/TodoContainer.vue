@@ -17,7 +17,6 @@
 import {ToDoApiClient} from "@/infrastructure/apiClients/toDoApiClient/brokers/ToDoApiClient";
 import {onBeforeMount, ref} from "vue";
 import {ToDoItem} from "@/modules/todos/models/ToDoItem";
-import {defineComponent} from "vue";
 import NewTodoForm from "@/modules/todos/components/TodoForm.vue";
 import TodoList from "@/modules/todos/components/TodoList.vue";
 import type {Guid} from "guid-typescript";
